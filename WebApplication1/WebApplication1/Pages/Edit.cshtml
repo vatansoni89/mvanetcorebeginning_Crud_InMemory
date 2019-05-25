@@ -1,8 +1,26 @@
-﻿@page
+﻿@page "{id:int}"
 @model WebApplication1.Pages.EditModel
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Customer - @Model.Customer.Id</h2>
 
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Customer.Id" type="hidden" />
+    <div>
+        <label asp-for="Customer.Name"></label>
+        <div>
+            <input asp-for="Customer.Name" />
+        </div>
+    </div>
+    <div>
+        <button type="submit">
+            Save
+        </button>
+    </div>
+</form>
+
+
+@*this is to generate edit url i.e. http://localhost:1446/Edit/1*@

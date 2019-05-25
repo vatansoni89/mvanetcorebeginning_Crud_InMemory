@@ -4,6 +4,7 @@ namespace WebApplication1
 {
     public class Customer
     {
+        //[Range(1,100)]
         public int Id { get; set; }
 
         [Required, StringLength(10)]

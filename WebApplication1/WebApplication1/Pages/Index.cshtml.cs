@@ -14,6 +14,9 @@ namespace WebApplication1.Pages
 
         public IList<Customer> Customers { get; private set; }
 
+        [TempData] // this can travel to another view. currently coming from Create.cshtml.cs
+        public string Message { get; set; }
+
         public IndexModel(AppDbContext context)
         {
             _AppDbContext = context;
@@ -25,11 +28,11 @@ namespace WebApplication1.Pages
             Customers = await _AppDbContext.Customers.AsNoTracking().ToListAsync();
         }
 
-        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        public async Task<IActionResult> OnPostFooDelAsync(int id) //match from view asp-page-handler="FooDel"
         {
             var xx = await _AppDbContext.Customers.FindAsync(id);
 
-            if (xx !=null)
+            if (xx != null)
             {
                 _AppDbContext.Customers.Remove(xx);
 
@@ -38,5 +41,7 @@ namespace WebApplication1.Pages
 
             return RedirectToPage();
         }
+
+
     }
 }
